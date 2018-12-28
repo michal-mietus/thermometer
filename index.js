@@ -17,7 +17,7 @@ io.on("connection", socket => {
     clearInterval(interval);
   }
 
-  interval = setInterval(() => readFileAndEmitTemp(socket), 10000);
+  interval = setInterval(() => readFileAndEmitTemp(socket), 3000);
 
   socket.on("disconnect", () => {
     console.log("Client disconnected");
@@ -39,7 +39,5 @@ const readFileAndEmitTemp = async socket => {
     console.log(error);
   }
 }
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 server.listen(port, () => console.log(`Example app listening on port ${port}!`))
