@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const port = 4000;
 
-var readTemp = require('./get-temperature.js');
+var getTemp = require('./get-temperature.js');
 
 const server = http.createServer(app);
 const io = socketIo(server);
@@ -37,7 +37,7 @@ const readFileAndEmitTemp = async socket => {
   try {
     fs.readFile('/sys/bus/w1/devices/28-000009ee08e7/w1_slave', 'utf8', (err, data) => {
       if (err) throw err;
-      tempInCelsius = readTemp.findTempInFile(data);
+      tempInCelsius = getTemp.getTemp(data);
       socket.emit("Temp", tempInCelsius);
     })
   } catch (error) {
