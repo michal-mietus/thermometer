@@ -28,8 +28,6 @@ app.get('/', function(req, res) {
   console.log('New connection.');
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
 const readFileAndEmitTemp = async socket => {
   try {
     fs.readFile('/sys/bus/w1/devices/28-000009ee08e7/w1_slave', 'utf8', (err, data) => {
@@ -41,3 +39,7 @@ const readFileAndEmitTemp = async socket => {
     console.log(error);
   }
 }
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+server.listen(port, () => console.log(`Example app listening on port ${port}!`))
