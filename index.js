@@ -26,6 +26,7 @@ io.on("connection", socket => {
 
 app.get('/', function(req, res) {
   console.log('New connection.');
+  res.send('Temperature in room page');
 })
 
 const readFileAndEmitTemp = async socket => {
@@ -40,6 +41,5 @@ const readFileAndEmitTemp = async socket => {
   }
 }
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 server.listen(port, () => console.log(`Example app listening on port ${port}!`))
