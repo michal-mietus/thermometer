@@ -13,6 +13,7 @@ If someone connect to server with react client, socket is opening and every
 
 ##### In client side application:
 - React
+- Socket.io
 
 ### Running
 
