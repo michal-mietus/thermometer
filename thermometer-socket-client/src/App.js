@@ -20,7 +20,7 @@ class App extends Component {
       <div style={{ textAlign: "center" }}>
         {response
           ? <p>
-              The temperature in Florence is: {response} °F
+              The temperature in room is: {response} °C
             </p>
           : <p>Loading...</p>}
       </div>
