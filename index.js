@@ -10,23 +10,22 @@ var readTemp = require('./get-temperature.js');
 const server = http.createServer(app);
 const io = socketIo(server);
 
+let interval;
+io.on("connection", socket => {
+  console.log("New client connected");
+  if (interval) {
+    clearInterval(interval);
+  }
+
+  interval = setInterval(() => readFileAndEmitTemp(socket), 10000);
+
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+  });
+}); 
+
 app.get('/', function(req, res) {
   console.log('New connection.');
-
-  let interval;
-  io.on("connection", socket => {
-    console.log("New client connected");
-    if (interval) {
-      clearInterval(interval);
-    }
-
-    interval = setInterval(() => readFileAndEmitTemp(socket), 10000);
-
-    socket.on("disconnect", () => {
-      console.log("Client disconnected");
-    });
-  }); 
-  readFileAndEmitTemp(res);
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
