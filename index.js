@@ -10,7 +10,15 @@ var readTemp = require('./get-temperature.js');
 const server = http.createServer(app);
 const io = socketIo(server);
 
+
+app.get('/', function(req, res) {
+  console.log('New connection.');
+  res.send('Temperature in room page');
+})
+
+
 let interval;
+
 io.on("connection", socket => {
   console.log("New client connected");
   if (interval) {
@@ -24,10 +32,6 @@ io.on("connection", socket => {
   });
 }); 
 
-app.get('/', function(req, res) {
-  console.log('New connection.');
-  res.send('Temperature in room page');
-})
 
 const readFileAndEmitTemp = async socket => {
   try {
